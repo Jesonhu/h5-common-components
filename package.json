@@ -1,0 +1,40 @@
+{
+  "name": "h5-common-components",
+  "version": "1.0.0",
+  "description": "h5 常用组件整理",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -w -r 0",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jesonhu/h5-common-components.git"
+  },
+  "keywords": [
+    "H5",
+    "components"
+  ],
+  "author": "Jesonhu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jesonhu/h5-common-components/issues"
+  },
+  "homepage": "https://github.com/Jesonhu/h5-common-components#readme",
+  "devDependencies": {
+    "cz-conventional-changelog": "^2.1.0",
+    "webpack": "^4.16.4",
+    "webpack-command": "^0.4.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.10"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
