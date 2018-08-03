@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>弹层组件测试</title>
+  <link rel="stylesheet" href="../src/css/reset.css">
+  <link rel="stylesheet" href="../src/css/components/layer.css">
+  <style>
+    .con {
+      width:50%;
+      height:100px;
+      background-color:#fff;
+      text-align: center;
+      line-height: 100px;
+      font-size:20px;
+    }
+  </style>
+</head>
+<body>
+  <button id="btn1">显示Layer1</button>
+  <button id="btn2">显示Layer2</button>
+  <button id="btn3">显示Layer3</button>
+
+  <div id="layer1" class="c-layer" data-type="layer">
+    <div data-type="con" class="con">
+        我是#layer1--默认
+    </div>
+  </div>
+
+  <div id="layer2" class="c-layer" data-type="layer">
+    <div data-type="con" class="con">
+        我是#layer2--无遮罩
+    </div>
+  </div>
+
+  <div id="layer3" class="c-layer" data-type="layer">
+    <div data-type="con" class="con">
+        我是#layer3--遮罩不处理
+    </div>
+  </div>
+
+  <script src="../dist/app.js"></script>
+  <script src="../dist/vendor.js"></script>
+  <script>
+    const layer_test = {
+      init() {
+        this.layer1();
+        this.layer2();
+        this.layer3();
+      },
+      layer1() {
+        const { Layer } = window.cComponents;
+        const layer1 = new Layer('#layer1');
+
+        const oBtn1 = document.getElementById('btn1');
+        oBtn1.addEventListener('click', () => {
+          layer1.open();
+        });
+
+        layer1._element.addEventListener(Layer.EVENT_TYPE.open, () => {
+          console.log('layer1 显示');
+        });
+        layer1._element.addEventListener(Layer.EVENT_TYPE.close, () => {
+          console.log('layer1 关闭');
+        });
+        
+      },
+      layer2() {
+        const { Layer } = window.cComponents;
+        const layer2 = new Layer('#layer2', {hasMask: false});
+
+        const oBtn2 = document.getElementById('btn2');
+        oBtn2.addEventListener('click', () => {
+          layer2.open();
+        });
+        layer2._element.addEventListener(Layer.EVENT_TYPE.open, () => {
+          console.log('layer2 显示');
+        });
+        layer2._element.addEventListener(Layer.EVENT_TYPE.close, () => {
+          console.log('layer2 关闭');
+        });
+      },
+      layer3() {
+        const { Layer } = window.cComponents;
+        const layer3 = new Layer('#layer3', {maskCanTap: false});
+
+        const oBtn3 = document.getElementById('btn3');
+        oBtn3.addEventListener('click', () => {
+          layer3.open();
+        });
+        layer3._element.addEventListener(Layer.EVENT_TYPE.open, () => {
+          console.log('layer3 显示');
+        });
+        layer3._element.addEventListener(Layer.EVENT_TYPE.close, () => {
+          console.log('layer3 关闭');
+        });
+      }
+    }
+    layer_test.init();
+  </script>
+</body>
+</html>
