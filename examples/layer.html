@@ -54,17 +54,24 @@
         const { Layer } = window.cComponents;
         const layer1 = new Layer('#layer1');
 
+        // console.log(layer1.removeEventListener);
         const oBtn1 = document.getElementById('btn1');
         oBtn1.addEventListener('click', () => {
           layer1.open();
         });
-
-        layer1._element.addEventListener(Layer.EVENT_TYPE.open, () => {
+        
+        const onOpen = () => {
           console.log('layer1 显示');
-        });
-        layer1._element.addEventListener(Layer.EVENT_TYPE.close, () => {
-          console.log('layer1 关闭');
-        });
+        }
+        const onClose = () => {
+          console.log('layer1 关闭 11');
+
+          layer1.removeEventListener(Layer.EVENT_TYPE.open, onOpen);
+        }
+        layer1.addEventListener(Layer.EVENT_TYPE.open, onOpen);
+        
+        layer1.addEventListener(Layer.EVENT_TYPE.close, onClose);
+        
         
       },
       layer2() {
@@ -75,10 +82,10 @@
         oBtn2.addEventListener('click', () => {
           layer2.open();
         });
-        layer2._element.addEventListener(Layer.EVENT_TYPE.open, () => {
+        layer2.addEventListener(Layer.EVENT_TYPE.open, () => {
           console.log('layer2 显示');
         });
-        layer2._element.addEventListener(Layer.EVENT_TYPE.close, () => {
+        layer2.addEventListener(Layer.EVENT_TYPE.close, () => {
           console.log('layer2 关闭');
         });
       },
@@ -90,10 +97,10 @@
         oBtn3.addEventListener('click', () => {
           layer3.open();
         });
-        layer3._element.addEventListener(Layer.EVENT_TYPE.open, () => {
+        layer3.addEventListener(Layer.EVENT_TYPE.open, () => {
           console.log('layer3 显示');
         });
-        layer3._element.addEventListener(Layer.EVENT_TYPE.close, () => {
+        layer3.addEventListener(Layer.EVENT_TYPE.close, () => {
           console.log('layer3 关闭');
         });
       }
